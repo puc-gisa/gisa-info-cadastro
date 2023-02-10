@@ -1,8 +1,9 @@
-CREATE TABLE associado
+CREATE TABLE ASSOCIADO
 (
-    id         SERIAL,
-    birth_date DATE,
-    email      VARCHAR(255),
-    first_name VARCHAR(100),
-    last_name  VARCHAR(300)
+    ID         serial,
+    FULL_NAME  varchar(300) not null,
+    BIRTH_DATE date         not null,
+    EMAIL      varchar(255) not null unique,
+    CREATED_AT timestamp    not null,
+    UPDATED_AT timestamp
 );

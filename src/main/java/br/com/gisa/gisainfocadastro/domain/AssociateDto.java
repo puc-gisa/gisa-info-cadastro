@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 public class AssociateDto {
@@ -16,12 +17,8 @@ public class AssociateDto {
     private Long id;
 
     @NotNull
-    @Size(min = 2, max = 100)
-    private String firstName;
-
-    @NotNull
     @Size(min = 2, max = 300)
-    private String lastName;
+    private String fullName;
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -32,4 +29,9 @@ public class AssociateDto {
     @Email
     private String email;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime createdAt;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    private LocalDateTime updatedAt;
 }

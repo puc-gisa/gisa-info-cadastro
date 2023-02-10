@@ -2,9 +2,12 @@ package br.com.gisa.gisainfocadastro.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -16,16 +19,21 @@ public class AssociateEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100)
-    private String firstName;
-
     @Column(length = 300)
-    private String lastName;
+    private String fullName;
 
     @Column
     private LocalDate birthDate;
 
-    @Column
+    @Column(unique = true)
     private String email;
+
+    @Column
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
 }
