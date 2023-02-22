@@ -1,11 +1,11 @@
-package br.com.gisa.gisainfocadastro.domain;
+package br.com.gisa.gisainfocadastro.domain.endereco.dto;
 
 import lombok.Data;
 
 @Data
 public class EnderecoResponse {
 
-    private Long id;
+    private Long idAssociado;
 
     private String logradouro;
 

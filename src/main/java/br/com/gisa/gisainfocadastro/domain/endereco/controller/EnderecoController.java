@@ -1,9 +1,9 @@
-package br.com.gisa.gisainfocadastro.controller;
+package br.com.gisa.gisainfocadastro.domain.endereco.controller;
 
-import br.com.gisa.gisainfocadastro.data.EnderecoEntity;
-import br.com.gisa.gisainfocadastro.domain.EnderecoRequest;
-import br.com.gisa.gisainfocadastro.domain.EnderecoResponse;
-import br.com.gisa.gisainfocadastro.service.EnderecoService;
+import br.com.gisa.gisainfocadastro.domain.endereco.data.EnderecoEntity;
+import br.com.gisa.gisainfocadastro.domain.endereco.dto.EnderecoRequest;
+import br.com.gisa.gisainfocadastro.domain.endereco.dto.EnderecoResponse;
+import br.com.gisa.gisainfocadastro.domain.endereco.service.EnderecoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/enderecos")
+@RequestMapping("/associados/{idAssociado}/enderecos")
 @RequiredArgsConstructor
 public class EnderecoController {
 
@@ -25,18 +25,18 @@ public class EnderecoController {
 
     private final ModelMapper mapper;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<EnderecoResponse> getById(@PathVariable Long id) {
-        Optional<EnderecoEntity> endereco = service.findById(id);
+    @GetMapping
+    public ResponseEntity<EnderecoResponse> getById(@PathVariable Long idAssociado) {
+        Optional<EnderecoEntity> endereco = service.findByIdAssociado(idAssociado);
         return endereco.map(entity ->
             ok(mapper.map(entity, EnderecoResponse.class))).orElseGet(
             () -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@Valid @RequestBody EnderecoRequest request) {
+    public ResponseEntity<Void> create(@PathVariable Long idAssociado, @Valid @RequestBody EnderecoRequest request) {
         EnderecoEntity entity = mapper.map(request, EnderecoEntity.class);
-        EnderecoEntity saved = service.create(entity);
+        EnderecoEntity saved = service.create(idAssociado, entity);
 
         URI location = ServletUriComponentsBuilder
             .fromCurrentRequest()
@@ -45,10 +45,10 @@ public class EnderecoController {
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @Valid @RequestBody EnderecoRequest enderecoRequest) {
+    @PutMapping
+    public ResponseEntity<Void> update(@PathVariable Long idAssociado, @Valid @RequestBody EnderecoRequest enderecoRequest) {
         EnderecoEntity entity = mapper.map(enderecoRequest, EnderecoEntity.class);
-        service.update(id, entity);
+        service.update(idAssociado, entity);
 
         return ResponseEntity.ok().build();
     }

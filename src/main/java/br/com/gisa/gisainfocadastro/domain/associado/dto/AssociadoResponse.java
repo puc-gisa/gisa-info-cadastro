@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.domain;
+package br.com.gisa.gisainfocadastro.domain.associado.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
