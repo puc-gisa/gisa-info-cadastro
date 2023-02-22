@@ -1,6 +1,6 @@
-package br.com.gisa.gisainfocadastro.service;
+package br.com.gisa.gisainfocadastro.domain.associado.service;
 
-import br.com.gisa.gisainfocadastro.data.AssociadoEntity;
+import br.com.gisa.gisainfocadastro.domain.associado.data.AssociadoEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

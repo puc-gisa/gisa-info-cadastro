@@ -1,8 +1,10 @@
-package br.com.gisa.gisainfocadastro.domain;
+package br.com.gisa.gisainfocadastro.domain.endereco.dto;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
@@ -12,7 +14,8 @@ public class EnderecoRequest {
     @Size(min = 2, max = 255)
     private String logradouro;
 
-    private Integer numero;
+    @Pattern(regexp = "\\d+", message = "deve conter somente numeros")
+    private String numero;
 
     @Size(max = 255)
     private String complemento;
@@ -29,8 +32,8 @@ public class EnderecoRequest {
     @Size(max = 2)
     private String estado;
 
-    @NotBlank
-    @Size(min = 8, max = 8)
+    @NotNull
+    @Pattern(regexp = "\\d{8}", message = "deve conter somente numeros")
     private String cep;
 
 }

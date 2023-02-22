@@ -1,7 +1,7 @@
-package br.com.gisa.gisainfocadastro.service;
+package br.com.gisa.gisainfocadastro.domain.associado.service;
 
-import br.com.gisa.gisainfocadastro.data.AssociadoEntity;
-import br.com.gisa.gisainfocadastro.data.AssociadoRepository;
+import br.com.gisa.gisainfocadastro.domain.associado.data.AssociadoEntity;
+import br.com.gisa.gisainfocadastro.domain.associado.data.AssociadoRepository;
 import br.com.gisa.gisainfocadastro.exceptions.NotFoundException;
 import br.com.gisa.gisainfocadastro.exceptions.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +18,12 @@ public class AssociadoService {
 
     private final AssociadoRepository repository;
 
-    public Optional<AssociadoEntity> findById(Long associadoId) {
-        return repository.findById(associadoId);
+    public Optional<AssociadoEntity> findById(Long idAssociado) {
+        return repository.findById(idAssociado);
+    }
+
+    public boolean exists(Long idAssociado) {
+        return repository.existsById(idAssociado);
     }
 
     public List<AssociadoEntity> findAll() {

@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.data;
+package br.com.gisa.gisainfocadastro.domain.endereco.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,9 @@ public class EnderecoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private Long idAssociado;
 
     @Column(length = 255)
     private String logradouro;
