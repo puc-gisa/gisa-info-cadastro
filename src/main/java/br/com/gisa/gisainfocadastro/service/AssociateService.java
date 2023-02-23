@@ -29,13 +29,14 @@ public class AssociateService {
         return repository.save(associateEntity);
     }
 
-    public AssociateEntity update(Long id, AssociateEntity associateEntity) {
-        Optional<AssociateEntity> entity = findById(id);
-        entity.orElseThrow(NotFoundException::new)
-            .setId(id);
+    public AssociateEntity update(Long id, AssociateEntity associateRequest) {
+        AssociateEntity entity = findById(id).orElseThrow(NotFoundException::new);
         log.info("Updating associate with id={}", id);
-        associateEntity.setId(id);
-        return repository.save(associateEntity);
+
+        entity.setBirthDate(associateRequest.getBirthDate());
+        entity.setEmail(associateRequest.getEmail());
+        entity.setFullName(associateRequest.getFullName());
+        return repository.save(associateRequest);
     }
 
 }

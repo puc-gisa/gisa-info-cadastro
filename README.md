@@ -10,23 +10,22 @@ https://github.com/puc-gisa/gisa-info-cadastro
 curl --location --request POST 'localhost:8080/associate/' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "firstName": "John",
-    "lastName" : "Doe",
+    "fullName": "John Doe",
     "email" : "johndoe@gmail.com",
     "birthDate": "31/12/2000"
-}'
+}\n'
 ```
 
 - Buscar por ID
 
 ```bash
-curl --location --request GET 'localhost:8080/associate/1'
+curl --location --request GET 'localhost:8080/associate/1';echo
 ```
 
 - Buscar todos
 
 ```bash
-curl --location --request GET 'localhost:8080/associate/'
+curl --location --request GET 'localhost:8080/associate/'; echo
 ```
 
 ## Actuator
