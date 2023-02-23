@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.data;
+package br.com.gisa.gisainfocadastro.domain.associado.data;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,27 +13,27 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "associado")
 @NoArgsConstructor
-public class AssociateEntity {
+public class AssociadoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 300)
-    private String fullName;
+    @Column(length = 255)
+    private String nome;
 
     @Column
-    private LocalDate birthDate;
+    private LocalDate dataNascimento;
 
     @Column(unique = true)
     private String email;
 
     @Column
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDateTime dataCriacao;
 
     @Column
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private LocalDateTime dataAtualizacao;
 
 }

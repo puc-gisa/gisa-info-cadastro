@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.domain;
+package br.com.gisa.gisainfocadastro.domain.associado.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -9,29 +9,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
-public class AssociateDto {
-
-    private Long id;
+public class AssociadoRequest {
 
     @NotNull
-    @Size(min = 2, max = 300)
-    private String fullName;
+    @Size(min = 2, max = 255)
+    private String nome;
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate birthDate;
+    private LocalDate dataNascimento;
 
     @NotBlank
     @Length(max = 255)
     @Email
     private String email;
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime createdAt;
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime updatedAt;
+    
 }
