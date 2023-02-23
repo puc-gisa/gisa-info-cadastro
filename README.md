@@ -12,7 +12,8 @@ curl --location --request POST 'localhost:8080/associados/' \
 --data-raw '{
     "nome": "John Doe",
     "email" : "johndoe@gmail.com",
-    "dataNascimento": "31/12/2000"
+    "dataNascimento": "31/12/2000",
+    "cpf": "12345678909",
 }'
 ```
 
