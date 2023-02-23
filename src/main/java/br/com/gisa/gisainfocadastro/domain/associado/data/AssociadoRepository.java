@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface AssociadoRepository extends JpaRepository<AssociadoEntity, Long> {
 
     Optional<AssociadoEntity> findByEmail(String email);
+
+    Optional<AssociadoEntity> findByCpf(String cpf);
+
 }

@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Data
@@ -25,5 +22,9 @@ public class AssociadoRequest {
     @Length(max = 255)
     @Email
     private String email;
-    
+
+    @NotNull
+    @Pattern(regexp = "\\d{11}", message = "deve conter somente numeros")
+    private String cpf;
+
 }

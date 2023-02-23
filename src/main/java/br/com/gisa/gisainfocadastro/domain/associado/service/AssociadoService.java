@@ -31,12 +31,7 @@ public class AssociadoService {
     }
 
     public AssociadoEntity create(AssociadoEntity associadoEntity) {
-
-        Optional<AssociadoEntity> associado = repository.findByEmail(associadoEntity.getEmail());
-        if (associado.isPresent()) {
-            throw new ValidationException("Já existe um associado com o email: " + associadoEntity.getEmail());
-        }
-
+        validateNewAssociado(associadoEntity);
         return repository.save(associadoEntity);
     }
 
@@ -48,6 +43,25 @@ public class AssociadoService {
         entity.setEmail(associadoEntity.getEmail());
         entity.setNome(associadoEntity.getNome());
         return repository.save(entity);
+    }
+
+    private void validateNewAssociado(AssociadoEntity associadoEntity) {
+        this.validateUniqueCpf(associadoEntity.getCpf());
+        this.validateUniqueEmail(associadoEntity.getEmail());
+    }
+
+    private void validateUniqueEmail(String email) {
+        Optional<AssociadoEntity> associado = repository.findByEmail(email);
+        associado.ifPresent(entity -> {
+            throw new ValidationException("Já existe um associado com o email: " + email);
+        });
+    }
+
+    private void validateUniqueCpf(String cpf) {
+        Optional<AssociadoEntity> associado = repository.findByCpf(cpf);
+        associado.ifPresent(entity -> {
+            throw new ValidationException("Já existe um associado com o cpf: " + cpf);
+        });
     }
 
 }

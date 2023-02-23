@@ -26,6 +26,9 @@ public class AssociadoEntity {
     private LocalDate dataNascimento;
 
     @Column(unique = true)
+    private String cpf;
+
+    @Column(unique = true)
     private String email;
 
     @Column

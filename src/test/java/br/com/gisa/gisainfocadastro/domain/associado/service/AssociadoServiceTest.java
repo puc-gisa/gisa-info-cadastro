@@ -24,6 +24,7 @@ class AssociadoServiceTest {
         entity.setNome("Jane Smith");
         entity.setDataNascimento(LocalDate.of(2000, 12, 31));
         entity.setEmail("johndoe@gmail.com");
+        entity.setCpf("12345678909");
 
         AssociadoEntity result = service.create(entity);
 
@@ -44,6 +45,7 @@ class AssociadoServiceTest {
         entity.setNome("Jane Smith");
         entity.setDataNascimento(LocalDate.of(2000, 12, 31));
         entity.setEmail("johndoe@gmail.com");
+        entity.setCpf("12345678909");
         AssociadoEntity saved = service.create(entity);
 
         AssociadoEntity result = service.findById(saved.getId()).orElseThrow(IllegalStateException::new);
