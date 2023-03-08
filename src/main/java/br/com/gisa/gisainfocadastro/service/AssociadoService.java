@@ -1,9 +1,9 @@
-package br.com.gisa.gisainfocadastro.domain.associado.service;
+package br.com.gisa.gisainfocadastro.service;
 
-import br.com.gisa.gisainfocadastro.domain.associado.data.AssociadoEntity;
-import br.com.gisa.gisainfocadastro.domain.associado.data.AssociadoRepository;
+import br.com.gisa.gisainfocadastro.domain.AssociadoEntity;
 import br.com.gisa.gisainfocadastro.exceptions.NotFoundException;
 import br.com.gisa.gisainfocadastro.exceptions.ValidationException;
+import br.com.gisa.gisainfocadastro.repository.AssociadoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,7 @@ public class AssociadoService {
 
     public AssociadoEntity create(AssociadoEntity associadoEntity) {
         validateNewAssociado(associadoEntity);
+        associadoEntity.getEndereco().setAssociado(associadoEntity);
         return repository.save(associadoEntity);
     }
 
@@ -42,6 +43,8 @@ public class AssociadoService {
         entity.setDataNascimento(associadoEntity.getDataNascimento());
         entity.setEmail(associadoEntity.getEmail());
         entity.setNome(associadoEntity.getNome());
+        entity.setEndereco(associadoEntity.getEndereco());
+        entity.getEndereco().setAssociado(entity);
         return repository.save(entity);
     }
 

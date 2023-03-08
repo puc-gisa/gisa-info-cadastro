@@ -1,9 +1,9 @@
-package br.com.gisa.gisainfocadastro.domain.associado.controller;
+package br.com.gisa.gisainfocadastro.controller;
 
-import br.com.gisa.gisainfocadastro.domain.associado.data.AssociadoEntity;
-import br.com.gisa.gisainfocadastro.domain.associado.dto.AssociadoRequest;
-import br.com.gisa.gisainfocadastro.domain.associado.dto.AssociadoResponse;
-import br.com.gisa.gisainfocadastro.domain.associado.service.AssociadoService;
+import br.com.gisa.gisainfocadastro.domain.AssociadoEntity;
+import br.com.gisa.gisainfocadastro.dto.AssociadoRequest;
+import br.com.gisa.gisainfocadastro.dto.AssociadoResponse;
+import br.com.gisa.gisainfocadastro.service.AssociadoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
