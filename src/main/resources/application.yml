@@ -26,7 +26,7 @@ spring:
   rabbitmq:
     host: ${MQ_URL:localhost}
     port: ${MQ_PORT:5672}
-    username: ${MQ_USER:info.cadastro}
+    username: ${MQ_USER:gisa.info.cadastro}
     password: ${MQ_PASSWORD:guest}
 
 management:
