@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.domain.endereco.dto;
+package br.com.gisa.gisainfocadastro.dto;
 
 import lombok.Data;
 
@@ -14,6 +14,7 @@ public class EnderecoRequest {
     @Size(min = 2, max = 255)
     private String logradouro;
 
+    @NotNull
     @Pattern(regexp = "\\d+", message = "deve conter somente numeros")
     private String numero;
 

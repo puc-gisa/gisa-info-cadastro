@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.domain.associado.data;
+package br.com.gisa.gisainfocadastro.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +38,9 @@ public class AssociadoEntity {
     @Column
     @UpdateTimestamp
     private LocalDateTime dataAtualizacao;
+
+    @OneToOne(mappedBy = "associado", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private EnderecoEntity endereco;
 
 }

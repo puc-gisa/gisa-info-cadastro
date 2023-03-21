@@ -1,5 +1,6 @@
-package br.com.gisa.gisainfocadastro.domain.associado.data;
+package br.com.gisa.gisainfocadastro.repository;
 
+import br.com.gisa.gisainfocadastro.domain.AssociadoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

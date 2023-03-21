@@ -1,4 +1,4 @@
-package br.com.gisa.gisainfocadastro.domain.associado.dto;
+package br.com.gisa.gisainfocadastro.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -19,6 +19,8 @@ public class AssociadoResponse {
     private String email;
 
     private String cpf;
+
+    private EnderecoResponse endereco;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataCriacao;
