@@ -7,6 +7,7 @@ import br.com.gisa.gisainfocadastro.service.AssociadoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -21,6 +22,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping("/associados")
 @RequiredArgsConstructor
+@Validated
 public class AssociadoController {
 
     private final AssociadoService service;
@@ -43,6 +45,7 @@ public class AssociadoController {
             .collect(Collectors.toList());
     }
 
+    @Validated(AssociadoRequest.OnInsert.class)
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody AssociadoRequest associadoRequest) {
         AssociadoEntity entity = mapper.map(associadoRequest, AssociadoEntity.class);

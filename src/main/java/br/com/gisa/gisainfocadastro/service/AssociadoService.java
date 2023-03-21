@@ -1,6 +1,7 @@
 package br.com.gisa.gisainfocadastro.service;
 
 import br.com.gisa.gisainfocadastro.domain.AssociadoEntity;
+import br.com.gisa.gisainfocadastro.domain.EnderecoEntity;
 import br.com.gisa.gisainfocadastro.exceptions.NotFoundException;
 import br.com.gisa.gisainfocadastro.exceptions.ValidationException;
 import br.com.gisa.gisainfocadastro.repository.AssociadoRepository;
@@ -36,16 +37,21 @@ public class AssociadoService {
         return repository.save(associadoEntity);
     }
 
-    public AssociadoEntity update(Long id, AssociadoEntity associadoEntity) {
-        AssociadoEntity entity = findById(id).orElseThrow(NotFoundException::new);
+    public AssociadoEntity update(Long id, AssociadoEntity request) {
+        AssociadoEntity associadoToSave = findById(id).orElseThrow(NotFoundException::new);
         log.info("Atualizando associado com id={}", id);
 
-        entity.setDataNascimento(associadoEntity.getDataNascimento());
-        entity.setEmail(associadoEntity.getEmail());
-        entity.setNome(associadoEntity.getNome());
-        entity.setEndereco(associadoEntity.getEndereco());
-        entity.getEndereco().setAssociado(entity);
-        return repository.save(entity);
+        associadoToSave.setNome(request.getNome());
+        associadoToSave.setDataNascimento(request.getDataNascimento());
+        EnderecoEntity enderecoToSave = associadoToSave.getEndereco();
+        enderecoToSave.setLogradouro(request.getEndereco().getLogradouro());
+        enderecoToSave.setNumero(request.getEndereco().getNumero());
+        enderecoToSave.setComplemento(request.getEndereco().getComplemento());
+        enderecoToSave.setBairro(request.getEndereco().getBairro());
+        enderecoToSave.setCidade(request.getEndereco().getCidade());
+        enderecoToSave.setEstado(request.getEndereco().getEstado());
+
+        return repository.save(associadoToSave);
     }
 
     private void validateNewAssociado(AssociadoEntity associadoEntity) {

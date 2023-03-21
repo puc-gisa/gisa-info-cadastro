@@ -10,6 +10,8 @@ import java.time.LocalDate;
 
 @Data
 public class AssociadoRequest {
+    public interface OnInsert {
+    }
 
     @NotNull
     @Size(min = 2, max = 255)
@@ -19,16 +21,17 @@ public class AssociadoRequest {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
 
-    @NotBlank
-    @Length(max = 255)
-    @Email
+    @NotBlank(groups = {OnInsert.class})
+    @Length(max = 255, groups = {OnInsert.class})
+    @Email(groups = {OnInsert.class})
     private String email;
 
-    @NotNull
-    @Pattern(regexp = "\\d{11}", message = "deve conter 11 numeros")
+    @NotNull(groups = {OnInsert.class})
+    @Pattern(regexp = "\\d{11}", message = "deve conter 11 numeros", groups = {OnInsert.class})
     private String cpf;
 
     @Valid
+    @NotNull
     private EnderecoRequest endereco;
 
 }
