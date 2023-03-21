@@ -43,7 +43,7 @@ public class AssociadoService {
         associadoEntity.getEndereco().setAssociado(associadoEntity);
         associadoEntity.setDataCriacao(LocalDateTime.now());
         AssociadoEntity save = repository.save(associadoEntity);
-        this.sendMessage(Amqp.NOVO_ASSOCIADO_EXCHANGE, save);
+        this.sendMessage(Amqp.ASSOCIADO_NOVO_EXCHANGE, save);
         return save;
     }
 
@@ -63,7 +63,7 @@ public class AssociadoService {
         associadoToSave.setDataAtualizacao(LocalDateTime.now());
 
         AssociadoEntity updated = repository.save(associadoToSave);
-        this.sendMessage(Amqp.ATUALIZADO_ASSOCIADO_EXCHANGE, updated);
+        this.sendMessage(Amqp.ASSOCIADO_ATUALIZADO_EXCHANGE, updated);
         return updated;
     }
 

@@ -5,7 +5,7 @@ public class Amqp {
     private Amqp() {
     }
 
-    public static final String NOVO_ASSOCIADO_EXCHANGE = "associado.novo";
-    public static final String ATUALIZADO_ASSOCIADO_EXCHANGE = "associado.atualizado";
+    public static final String ASSOCIADO_NOVO_EXCHANGE = "associado.novo";
+    public static final String ASSOCIADO_ATUALIZADO_EXCHANGE = "associado.atualizado";
 
 }
