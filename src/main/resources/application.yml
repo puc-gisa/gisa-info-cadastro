@@ -23,6 +23,12 @@ spring:
   web:
     locale: pt_BR
 
+  rabbitmq:
+    host: ${MQ_URL:localhost}
+    port: ${MQ_PORT:5672}
+    username: ${MQ_USER:info.cadastro}
+    password: ${MQ_PASSWORD:guest}
+
 management:
   endpoint:
     health:
