@@ -4,6 +4,7 @@ import br.com.gisa.gisainfocadastro.domain.AssociadoEntity;
 import br.com.gisa.gisainfocadastro.dto.AssociadoRequest;
 import br.com.gisa.gisainfocadastro.dto.AssociadoResponse;
 import br.com.gisa.gisainfocadastro.service.AssociadoService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -33,33 +34,33 @@ public class AssociadoController {
     public ResponseEntity<AssociadoResponse> getById(@PathVariable Long id) {
         Optional<AssociadoEntity> associado = service.findById(id);
         return associado.map(entity ->
-            ok(mapper.map(entity, AssociadoResponse.class))).orElseGet(
-            () -> ResponseEntity.notFound().build());
+                ok(mapper.map(entity, AssociadoResponse.class))).orElseGet(
+                () -> ResponseEntity.notFound().build());
     }
 
     @GetMapping
     public List<AssociadoResponse> listAll() {
         List<AssociadoEntity> associados = service.findAll();
         return associados.stream()
-            .map(a -> mapper.map(a, AssociadoResponse.class))
-            .collect(Collectors.toList());
+                .map(a -> mapper.map(a, AssociadoResponse.class))
+                .collect(Collectors.toList());
     }
 
     @Validated(AssociadoRequest.OnInsert.class)
     @PostMapping
-    public ResponseEntity<Void> create(@Valid @RequestBody AssociadoRequest associadoRequest) {
+    public ResponseEntity<Void> create(@Valid @RequestBody AssociadoRequest associadoRequest) throws JsonProcessingException {
         AssociadoEntity entity = mapper.map(associadoRequest, AssociadoEntity.class);
         AssociadoEntity saved = service.create(entity);
 
         URI location = ServletUriComponentsBuilder
-            .fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(saved.getId()).toUri();
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @Valid @RequestBody AssociadoRequest associadoRequest) {
+    public ResponseEntity<Void> update(@PathVariable Long id, @Valid @RequestBody AssociadoRequest associadoRequest) throws JsonProcessingException {
         AssociadoEntity entity = mapper.map(associadoRequest, AssociadoEntity.class);
         service.update(id, entity);
 

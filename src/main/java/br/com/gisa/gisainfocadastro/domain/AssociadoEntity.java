@@ -2,8 +2,6 @@ package br.com.gisa.gisainfocadastro.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,11 +30,9 @@ public class AssociadoEntity {
     private String email;
 
     @Column
-    @CreationTimestamp
     private LocalDateTime dataCriacao;
 
     @Column
-    @UpdateTimestamp
     private LocalDateTime dataAtualizacao;
 
     @OneToOne(mappedBy = "associado", cascade = CascadeType.ALL)

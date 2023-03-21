@@ -2,6 +2,7 @@ package br.com.gisa.gisainfocadastro.service;
 
 import br.com.gisa.gisainfocadastro.domain.AssociadoEntity;
 import br.com.gisa.gisainfocadastro.domain.EnderecoEntity;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +21,7 @@ class AssociadoServiceTest {
     AssociadoService service;
 
     @Test
-    void shouldInsertAssociado() {
+    void shouldInsertAssociado() throws JsonProcessingException {
         AssociadoEntity associado = new AssociadoEntity();
         associado.setNome("Jane Smith");
         associado.setDataNascimento(LocalDate.of(2000, 12, 31));
@@ -45,7 +46,7 @@ class AssociadoServiceTest {
     }
 
     @Test
-    void shouldFoundAssociado() {
+    void shouldFoundAssociado() throws JsonProcessingException {
         AssociadoEntity entity = new AssociadoEntity();
         entity.setNome("Jane Smith");
         entity.setDataNascimento(LocalDate.of(2000, 12, 31));

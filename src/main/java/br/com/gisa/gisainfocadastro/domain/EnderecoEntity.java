@@ -1,7 +1,9 @@
 package br.com.gisa.gisainfocadastro.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -15,9 +17,11 @@ public class EnderecoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     @JoinColumn(name = "id_associado")
+    @ToString.Exclude
     private AssociadoEntity associado;
 
     @Column(length = 255)
