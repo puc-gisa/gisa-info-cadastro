@@ -19,6 +19,7 @@ public class AssociadoRequest {
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @Past
     private LocalDate dataNascimento;
 
     @NotBlank(groups = {OnInsert.class})
