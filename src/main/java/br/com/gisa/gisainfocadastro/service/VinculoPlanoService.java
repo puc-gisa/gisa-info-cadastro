@@ -69,4 +69,12 @@ public class VinculoPlanoService {
                 throw new ValidationException("Já existe um plano vinculado!");
             });
     }
+
+    public Optional<PlanoSaudeIndividualEntity> findPlanoAtivo(Long idAssociado) {
+        List<PlanoSaudeIndividualEntity> planos = findByIdAssociado(idAssociado);
+
+        return planos.stream()
+            .filter(PlanoSaudeIndividualEntity::isAtivo)
+            .findAny();
+    }
 }

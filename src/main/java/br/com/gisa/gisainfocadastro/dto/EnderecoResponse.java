@@ -1,8 +1,10 @@
 package br.com.gisa.gisainfocadastro.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EnderecoResponse {
 
     private String logradouro;
