@@ -12,5 +12,4 @@ public class Amqp {
     public static final String RESPOSTA_AUTORIZACAO_EXAME_EXCHANGE = "resposta.autorizacao.exame";
 
     public static final String RESPOSTA_AUTORIZACAO_EXAME_QUEUE = "info.cadastro.resposta.autorizacao.exame";
-
 }
