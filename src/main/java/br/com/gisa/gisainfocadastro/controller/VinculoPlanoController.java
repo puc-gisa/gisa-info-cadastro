@@ -22,11 +22,11 @@ public class VinculoPlanoController {
 
     private final VinculoPlanoService service;
 
-    private final ModelMapper mapper;
+    private final ModelMapper modelMapper;
 
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody VinculoAssociadoIndividualRequest vinculoRequest) {
-        PlanoSaudeIndividualEntity entity = mapper.map(vinculoRequest, PlanoSaudeIndividualEntity.class);
+        PlanoSaudeIndividualEntity entity = modelMapper.map(vinculoRequest, PlanoSaudeIndividualEntity.class);
         PlanoSaudeIndividualEntity saved = service.create(entity);
 
         URI location = ServletUriComponentsBuilder
@@ -40,7 +40,7 @@ public class VinculoPlanoController {
     public List<VinculoAssociadoIndividualResponse> getById(@PathVariable Long idAssociado) {
         List<PlanoSaudeIndividualEntity> planos = service.findByIdAssociado(idAssociado);
         return planos.stream()
-            .map(a -> mapper.map(a, VinculoAssociadoIndividualResponse.class))
+            .map(a -> modelMapper.map(a, VinculoAssociadoIndividualResponse.class))
             .collect(Collectors.toList());
     }
 }

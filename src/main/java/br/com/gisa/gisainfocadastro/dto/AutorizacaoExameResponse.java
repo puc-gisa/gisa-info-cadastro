@@ -1,8 +1,6 @@
 package br.com.gisa.gisainfocadastro.dto;
 
-import br.com.gisa.gisainfocadastro.domain.SituacaoAutoricacaoExame;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -14,32 +12,38 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AutorizacaoExameResponse {
 
-    @JsonProperty("codigoSolicitacao")
+    @JsonProperty(value = "codigoSolicitacao", index = 0)
     private Long id;
 
+    @JsonProperty(index = 1)
     private Long idAssociado;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonProperty(index = 2)
+    private LocalDateTime dataSolicitacao;
+
+    @JsonProperty(index = 3)
     private String codigoExame;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonProperty(index = 4)
     private LocalDate dataExame;
 
+    @JsonProperty(index = 5)
     private String crmMedicoSolicitante;
 
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime dataSolicitacao;
+    @JsonProperty(value = "response", index = Integer.MAX_VALUE)
+    private Response response;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataValidade;
+    @Data
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class Response {
+        private String justificativa;
 
-    private String justificativa;
+        private String situacao;
 
-    @JsonIgnore
-    private Integer codigoSituacao;
-
-    @JsonProperty("resultado.situacao")
-    public String situacao() {
-        return SituacaoAutoricacaoExame.ofCodigo(codigoSituacao).name();
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        private LocalDate dataValidade;
     }
-
 }
+

@@ -28,13 +28,13 @@ public class AssociadoController {
 
     private final AssociadoService service;
 
-    private final ModelMapper mapper;
+    private final ModelMapper modelMapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<AssociadoResponse> getById(@PathVariable Long id) {
         Optional<AssociadoEntity> associado = service.findById(id);
         return associado.map(entity ->
-                ok(mapper.map(entity, AssociadoResponse.class))).orElseGet(
+                ok(modelMapper.map(entity, AssociadoResponse.class))).orElseGet(
                 () -> ResponseEntity.notFound().build());
     }
 
@@ -42,14 +42,14 @@ public class AssociadoController {
     public List<AssociadoResponse> listAll() {
         List<AssociadoEntity> associados = service.findAll();
         return associados.stream()
-                .map(a -> mapper.map(a, AssociadoResponse.class))
+                .map(a -> modelMapper.map(a, AssociadoResponse.class))
                 .collect(Collectors.toList());
     }
 
     @Validated(AssociadoRequest.OnInsert.class)
     @PostMapping
     public ResponseEntity<Void> create(@Valid @RequestBody AssociadoRequest associadoRequest) throws JsonProcessingException {
-        AssociadoEntity entity = mapper.map(associadoRequest, AssociadoEntity.class);
+        AssociadoEntity entity = modelMapper.map(associadoRequest, AssociadoEntity.class);
         AssociadoEntity saved = service.create(entity);
 
         URI location = ServletUriComponentsBuilder
@@ -61,7 +61,7 @@ public class AssociadoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id, @Valid @RequestBody AssociadoRequest associadoRequest) throws JsonProcessingException {
-        AssociadoEntity entity = mapper.map(associadoRequest, AssociadoEntity.class);
+        AssociadoEntity entity = modelMapper.map(associadoRequest, AssociadoEntity.class);
         service.update(id, entity);
 
         return ResponseEntity.ok().build();

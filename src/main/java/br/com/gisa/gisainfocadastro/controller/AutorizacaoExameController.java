@@ -26,35 +26,34 @@ public class AutorizacaoExameController {
 
     private final AutorizacaoExameService service;
 
-    private final ModelMapper mapper;
+    private final ModelMapper modelMapper;
 
     @PostMapping("/")
-    public ResponseEntity<AutorizacaoExameEntity> requestAuthorization(@RequestBody @Valid AutorizacaoExameRequest exameRequest) throws JsonProcessingException {
-        AutorizacaoExameEntity entity = mapper.map(exameRequest, AutorizacaoExameEntity.class);
+    public ResponseEntity<AutorizacaoExameResponse> requestAuthorization(@RequestBody @Valid AutorizacaoExameRequest exameRequest) throws JsonProcessingException {
+        AutorizacaoExameEntity entity = modelMapper.map(exameRequest, AutorizacaoExameEntity.class);
         AutorizacaoExameEntity saved = service.requestAuthorization(entity);
 
         URI location = ServletUriComponentsBuilder
             .fromCurrentRequest()
             .path("/{id}")
             .buildAndExpand(saved.getId()).toUri();
-        return ResponseEntity.created(location).body(saved);
+        return ResponseEntity.created(location).body(modelMapper.map(saved, AutorizacaoExameResponse.class));
     }
 
     @GetMapping("/{idSolicitacao}")
     public ResponseEntity<AutorizacaoExameResponse> getById(@PathVariable Long idSolicitacao) {
         Optional<AutorizacaoExameEntity> solicatacao = service.findByIdSolicitacao(idSolicitacao);
         return solicatacao.map(entity ->
-            ok(mapper.map(entity, AutorizacaoExameResponse.class))).orElseGet(
-            () -> ResponseEntity.notFound().build());
+                ok(modelMapper.map(entity, AutorizacaoExameResponse.class)))
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/associado/{idAssociado}")
     public List<AutorizacaoExameResponse> getByIdAssociado(@PathVariable Long idAssociado) {
         List<AutorizacaoExameEntity> solicatacoes = service.findByIdAssociado(idAssociado);
         return solicatacoes.stream()
-            .map(a -> mapper.map(a, AutorizacaoExameResponse.class))
+            .map(entity -> modelMapper.map(entity, AutorizacaoExameResponse.class))
             .collect(Collectors.toList());
     }
-
 
 }
