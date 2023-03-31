@@ -1,0 +1,723 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/associados/{id}": {
+            "get": {
+                "tags": [
+                    "associado-controller"
+                ],
+                "operationId": "getById_3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AssociadoResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "associado-controller"
+                ],
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AssociadoRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/vinculo-plano": {
+            "post": {
+                "tags": [
+                    "vinculo-plano-controller"
+                ],
+                "operationId": "create",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VinculoAssociadoIndividualRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/autorizacao-exame/": {
+            "post": {
+                "tags": [
+                    "autorizacao-exame-controller"
+                ],
+                "operationId": "requestAuthorization",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AutorizacaoExameRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutorizacaoExameResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/associados": {
+            "get": {
+                "tags": [
+                    "associado-controller"
+                ],
+                "operationId": "listAll",
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AssociadoResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "associado-controller"
+                ],
+                "operationId": "create_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AssociadoRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/vinculo-plano/{idAssociado}": {
+            "get": {
+                "tags": [
+                    "vinculo-plano-controller"
+                ],
+                "operationId": "getById",
+                "parameters": [
+                    {
+                        "name": "idAssociado",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/VinculoAssociadoIndividualResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tipo-plano/{tipoCliente}": {
+            "get": {
+                "tags": [
+                    "tipo-plano-saude-controller"
+                ],
+                "operationId": "getById_1",
+                "parameters": [
+                    {
+                        "name": "tipoCliente",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ENFERMARIA",
+                                            "APARTAMENTO",
+                                            "VIP"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tipo-plano/": {
+            "get": {
+                "tags": [
+                    "tipo-plano-saude-controller"
+                ],
+                "operationId": "getAll",
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": [
+                                            "ENFERMARIA",
+                                            "APARTAMENTO",
+                                            "VIP"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/autorizacao-exame/{idSolicitacao}": {
+            "get": {
+                "tags": [
+                    "autorizacao-exame-controller"
+                ],
+                "operationId": "getById_2",
+                "parameters": [
+                    {
+                        "name": "idSolicitacao",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutorizacaoExameResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/autorizacao-exame/associado/{idAssociado}": {
+            "get": {
+                "tags": [
+                    "autorizacao-exame-controller"
+                ],
+                "operationId": "getByIdAssociado",
+                "parameters": [
+                    {
+                        "name": "idAssociado",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AutorizacaoExameResponse"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ApiError": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AssociadoRequest": {
+                "required": [
+                    "cpf",
+                    "dataNascimento",
+                    "email",
+                    "endereco",
+                    "nome"
+                ],
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "maxLength": 255,
+                        "minLength": 2,
+                        "type": "string"
+                    },
+                    "dataNascimento": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "pattern": "\\d{11}",
+                        "type": "string"
+                    },
+                    "endereco": {
+                        "$ref": "#/components/schemas/EnderecoRequest"
+                    }
+                }
+            },
+            "EnderecoRequest": {
+                "required": [
+                    "bairro",
+                    "cep",
+                    "cidade",
+                    "estado",
+                    "logradouro",
+                    "numero"
+                ],
+                "type": "object",
+                "properties": {
+                    "logradouro": {
+                        "maxLength": 255,
+                        "minLength": 2,
+                        "type": "string"
+                    },
+                    "numero": {
+                        "pattern": "\\d+",
+                        "type": "string"
+                    },
+                    "complemento": {
+                        "maxLength": 255,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "bairro": {
+                        "maxLength": 255,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "cidade": {
+                        "maxLength": 255,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "estado": {
+                        "maxLength": 2,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "cep": {
+                        "pattern": "\\d{8}",
+                        "type": "string"
+                    }
+                }
+            },
+            "VinculoAssociadoIndividualRequest": {
+                "required": [
+                    "codigoTipoPlano",
+                    "idAssociado"
+                ],
+                "type": "object",
+                "properties": {
+                    "codigoTipoPlano": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "idAssociado": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                }
+            },
+            "AutorizacaoExameRequest": {
+                "required": [
+                    "codigoExame",
+                    "crmMedicoSolicitante",
+                    "dataExame",
+                    "idAssociado"
+                ],
+                "type": "object",
+                "properties": {
+                    "idAssociado": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "codigoExame": {
+                        "maxLength": 20,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "dataExame": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "crmMedicoSolicitante": {
+                        "maxLength": 20,
+                        "minLength": 0,
+                        "pattern": "\\d+-\\w{2}",
+                        "type": "string"
+                    }
+                }
+            },
+            "AutorizacaoExameResponse": {
+                "type": "object",
+                "properties": {
+                    "codigoSolicitacao": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "idAssociado": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "dataSolicitacao": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "codigoExame": {
+                        "type": "string"
+                    },
+                    "dataExame": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "crmMedicoSolicitante": {
+                        "type": "string"
+                    },
+                    "response": {
+                        "$ref": "#/components/schemas/Response"
+                    }
+                }
+            },
+            "Response": {
+                "type": "object",
+                "properties": {
+                    "justificativa": {
+                        "type": "string"
+                    },
+                    "situacao": {
+                        "type": "string"
+                    },
+                    "dataValidade": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "VinculoAssociadoIndividualResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "idAssociado": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "dataInicio": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dataFim": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "codigoTipoPlano": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "ativo": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "AssociadoResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "dataNascimento": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "cpf": {
+                        "type": "string"
+                    },
+                    "endereco": {
+                        "$ref": "#/components/schemas/EnderecoResponse"
+                    },
+                    "dataCriacao": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "dataAtualizacao": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "EnderecoResponse": {
+                "type": "object",
+                "properties": {
+                    "logradouro": {
+                        "type": "string"
+                    },
+                    "numero": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "complemento": {
+                        "type": "string"
+                    },
+                    "bairro": {
+                        "type": "string"
+                    },
+                    "cidade": {
+                        "type": "string"
+                    },
+                    "estado": {
+                        "type": "string"
+                    },
+                    "cep": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
